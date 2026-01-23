@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:practice/home/home_screen.dart';
-import 'package:practice/profile/profile_screen.dart';
-import 'package:practice/settings_screens/settings_screen.dart';
+import 'package:practice/provider/Setting_Theme_providder/theme_provider.dart';
+import 'package:practice/provider/home_provider/home_provider.dart';
+import 'package:practice/screens/home_screen/home_screen.dart';
+import 'package:practice/screens/profile_screens/profile_screen.dart';
+import 'package:practice/screens/settings_screen/settings_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider<ThemeProvider>(
+//       create: (context) => ThemeProvider(),
+//       child: Consumer<ThemeProvider>( // 🔥 TYPE ADDED HERE
+//         builder: (context, provider, child) {
+//           return MaterialApp(
+//             debugShowCheckedModeBanner: false,
+//             themeMode: provider.mode,
+//             home: ChangeNotifierProvider(
+//               create: (context) => HomeProvider(),
+//               child: HomeScreen(),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,19 +38,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
+    return ChangeNotifierProvider<ThemeProvider>(
+        create: (context)=>ThemeProvider(),
+    child: Consumer<ThemeProvider>(
+        builder:(context ,provider,child){
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+           themeMode: provider.mode,
+           darkTheme: ThemeData.dark(),
 
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-    // initialRoute:'/profile' ,
-     routes: {
-        '/':(contex)=>HomeScreen(),
-        '/profile':(context)=>ProfileScreen(),
-        '/setting':(context)=>SettingsScreen()
-    },
+          home: ChangeNotifierProvider(
+          create: (context)=>HomeProvider(),
+          child: HomeScreen(),
+          )
+          );
+        } )
     );
   }
 }
