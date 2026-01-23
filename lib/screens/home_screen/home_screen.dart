@@ -40,6 +40,31 @@ class HomeScreen extends StatelessWidget {
           //   }
           // ),
 
+
+   //switch button chage mode
+          // Consumer<ThemeProvider>(
+          //   builder: (context, provider, child) {
+          //     return SwitchListTile(
+          //       title: Text(
+          //         provider.mode == ThemeMode.dark ? 'Dark Mode' : 'Light Mode',
+          //       ),
+          //       value: provider.mode == ThemeMode.dark,
+          //       onChanged: (isDark) {
+          //         provider.switchmode(
+          //           isDark ? ThemeMode.dark : ThemeMode.light,
+          //         );
+          //       },
+          //     );
+          //   },
+          // ),
+
+
+
+
+
+
+
+//one text button switching into dark and light ============
           Padding(
             padding: const EdgeInsets.only(left: 250),
             child: Consumer<ThemeProvider>(builder: (context,Provider,child){
