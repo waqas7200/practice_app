@@ -12,8 +12,48 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home screen'),
       ),
+
       body:Column(
         children: [
+          Consumer<HomeProvider>(
+            builder: (context,provider,child) {
+              return Text(provider.count.toString(),style: TextStyle(fontSize: 30),);
+            }
+          ),
+
+          //buttonn
+          ElevatedButton(onPressed: (){
+            Provider.of<HomeProvider>(context,listen: false).increment();
+          }, child: Text('Counter 1')),
+
+          Consumer<HomeProvider2>(
+            builder: (context,provider,child) {
+              return Text(provider.count.toString(),style: TextStyle(fontSize: 30),);
+            }
+          ),
+          ElevatedButton(onPressed: (){
+            Provider.of<HomeProvider2>(context,listen: false).increment();
+          }, child: Text('Counter 2')),
+
+          Consumer<HomeProvider3>(
+              builder: (context,provider,child) {
+                return Text(provider.count.toString(),style: TextStyle(fontSize: 30),);
+              }
+          ),
+          ElevatedButton(onPressed: (){
+            Provider.of<HomeProvider3>(context,listen: false).increment();
+          }, child: Text('Counter 3')),
+
+
+
+
+
+
+
+
+
+
+
           // Consumer<ThemeProvider>(
           //   builder: (context,Provider,child) {
           //     return DropdownButton<ThemeMode>(
@@ -65,20 +105,20 @@ class HomeScreen extends StatelessWidget {
 
 
 //one text button switching into dark and light ============
-          Padding(
-            padding: const EdgeInsets.only(left: 250),
-            child: Consumer<ThemeProvider>(builder: (context,Provider,child){
-              final isDark=Provider.mode==ThemeMode.dark;
-              return TextButton.icon(onPressed: (){
-                Provider.switchmode(
-                  isDark?ThemeMode.light:ThemeMode.dark
-                );
-              } ,
-              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-                label: Text(isDark? 'Light ':'Dark '),
-              );
-            }),
-          ),
+//           Padding(
+//             padding: const EdgeInsets.only(left: 250),
+//             child: Consumer<ThemeProvider>(builder: (context,Provider,child){
+//               final isDark=Provider.mode==ThemeMode.dark;
+//               return TextButton.icon(onPressed: (){
+//                 Provider.switchmode(
+//                   isDark?ThemeMode.light:ThemeMode.dark
+//                 );
+//               } ,
+//               icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+//                 label: Text(isDark? 'Light ':'Dark '),
+//               );
+//             }),
+//           ),
 
 
           //one button textbutton theme change =========
@@ -125,23 +165,23 @@ class HomeScreen extends StatelessWidget {
           //   },
           // ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 150),
-            child: Center(child: Consumer<HomeProvider>(
-              builder: (context ,provider,child){
-                return Text(provider.count.toString(),style: TextStyle(
-                    fontWeight:FontWeight.bold,fontSize: 40),);
-              },
-            ),),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 150),
+          //   child: Center(child: Consumer<HomeProvider>(
+          //     builder: (context ,provider,child){
+          //       return Text(provider.count.toString(),style: TextStyle(
+          //           fontWeight:FontWeight.bold,fontSize: 40),);
+          //     },
+          //   ),),
+          // ),
         ],
       ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              Provider.of<HomeProvider>(context,listen:false).increment();
-            },
-            child: Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //     onPressed: (){
+        //       Provider.of<HomeProvider>(context,listen:false).increment();
+        //     },
+        //     child: Icon(Icons.add),
+        // ),
 
     );
   }

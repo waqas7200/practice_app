@@ -18,18 +18,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create:(context)=>NoteProvider() ,
-    child: MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/':(context)=>Home2(),
-        '/addnote':(context)=>AddNote(),
-      },
+      home: MultiProvider(
+    providers: [
+    ChangeNotifierProvider(create: (context)=>HomeProvider(),),
+    ChangeNotifierProvider(create: (context)=>HomeProvider2(),),
+    ChangeNotifierProvider(create: (context)=>HomeProvider3(),),
+    ],
+    child: HomeScreen(),
+
     ),
     );
   }
 }
+
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider(
+//         create:(context)=>NoteProvider() ,
+//     child: MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       routes: {
+//         '/':(context)=>Home2(),
+//         '/addnote':(context)=>AddNote(),
+//       },
+//     ),
+//     );
+//   }
+// }
 
 
 
