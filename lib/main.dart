@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 import 'View/Source/Authentications_screen/Login_screen/login_screen.dart';
 import 'View/utills/route_helper/routes.dart';
 import 'firebase_options.dart';
-
+final ScaffoldMessengerkey = GlobalKey<ScaffoldMessengerState>();
+final navigatorkey=GlobalKey<NavigatorState>();
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,11 @@ class MyApp extends StatelessWidget {
       child:MaterialApp(
         theme: ThemeData(
           splashColor: Colors.black,
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.red
+              )
+            ),
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Appcolor.red,
@@ -39,6 +45,8 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.inital,
         routes: Routes.routes(),
         onGenerateRoute: (settings)=>Routes.onGenerateRoute(settings),
+        scaffoldMessengerKey:ScaffoldMessengerkey,
+        navigatorKey: navigatorkey,
         debugShowCheckedModeBanner: false,
 
       )
