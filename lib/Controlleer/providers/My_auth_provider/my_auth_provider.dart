@@ -5,7 +5,8 @@ import 'package:practice/Model/usermodel/usermodel.dart';
 import 'package:practice/View/utills/route_helper/routes.dart';
 import 'package:practice/main.dart';
 
-import '../../View/utills/scafold_massanger/scafold_massanger.dart';
+import '../../../View/Source/Authentications_screen/Login_screen/login_screen.dart';
+import '../../../View/utills/scafold_massanger/scafold_massanger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyAuthProvider with ChangeNotifier{
@@ -74,7 +75,9 @@ class MyAuthProvider with ChangeNotifier{
   void logout()async{
     _loading(true);
     try{
-
+     await auth.signOut();
+     Navigator.pushNamedAndRemoveUntil(navigatorkey.currentContext!,
+         Routes.login, (value)=>false);
     }catch(e){
       showMsg(e.toString());
     }finally{

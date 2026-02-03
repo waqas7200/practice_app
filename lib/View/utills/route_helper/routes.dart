@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/Model/addnote_model/add_note_model.dart';
 
 import '../../Source/Authentications_screen/Login_screen/login_screen.dart';
 import '../../Source/Authentications_screen/Sign_up_screens/register_screen(signup).dart';
@@ -14,7 +15,7 @@ class Routes {
   static String forget_oassword='/forget';
   static String home='/home';
   static String addNote='/AddNote';
-  static String updatenote='/updateNote';
+  static const String updatenote='/updateNote';
 
   static Map<String ,WidgetBuilder>routes()=>{
     inital:(context)=>SplashScreen(),
@@ -26,7 +27,12 @@ class Routes {
     //updatenote:(context)=>UpdateScreen(),
   };
   static onGenerateRoute(RouteSettings settings){
-    final arug=settings.arguments;
-    return MaterialPageRoute(builder: (context)=>UpdateScreen());
+    switch(settings.name){
+      case  updatenote:{
+        AddNoteModel  notes=settings.arguments as AddNoteModel;
+        return MaterialPageRoute(builder: (context)=>UpdateScreen(note: notes,));
+      }
+    }
+
   }
 }

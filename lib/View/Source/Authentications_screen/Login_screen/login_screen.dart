@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:practice/Model/providers/my_auth_provider.dart';
+import 'package:practice/Controlleer/providers/My_auth_provider/my_auth_provider.dart';
 import 'package:practice/View/utills/static_class_of_colors/static_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return 'please enter email';
                     }
                     if(!value.contains('@')){
-                      return 'use alphabets,digits,and @l';
+                      return 'use alphabets,digits,and @';
                     }
                     if(!RegExp(r'[0-9]').hasMatch(value)){
                       return 'use alphabets,digits,and @ ';

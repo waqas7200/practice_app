@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:practice/View/Source/Home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../Model/providers/my_auth_provider.dart';
+import '../../../../Controlleer/providers/My_auth_provider/my_auth_provider.dart';
 import '../../../utills/route_helper/routes.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return 'please enter email';
                     }
                     if(!value.contains('@')){
-                      return 'use alphabets,digits,and @l';
+                      return 'use alphabets,digits,and @';
                     }
                     if(!RegExp(r'[0-9]').hasMatch(value)){
                       return 'use alphabets,digits,and @ ';
@@ -99,7 +99,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.only(top: 30),
                 child: Consumer<MyAuthProvider>(
                   builder: (context,provider,child) {
-                    return ElevatedButton(onPressed: (){
+                    return provider.loading?Center(child: CircularProgressIndicator(),)
+                        :ElevatedButton(onPressed: (){
                       if(formkey.currentState!.validate())
                       {
                         provider.signup(name.text,email.text,password.text);
